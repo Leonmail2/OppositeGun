@@ -14,9 +14,11 @@ var movement_joystick_pos = Vector2()
 var offhand_joystick_pos = Vector2()
 
 
-onready var camera = $PlayerContainerARVROrigin/ARVRCamera
+onready var camera = $PlayerContainer/ARVROrigin/ARVRCamera
 onready var player_container = $PlayerContainer
 
+onready var left_controller = $PlayerContainer/ARVROrigin/LeftController
+onready var right_controller = $PlayerContainer/ARVROrigin/RightController
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	pass # Replace with function body.
@@ -57,3 +59,11 @@ func _physics_process(delta):
 	t2.origin = camera.transform.origin
 	rot = rot.rotated(Vector3(0.0, 1.0, 0.0), -ProjectSettings.get_setting("game_settings/turn_rate") * delta*offhand_joystick_pos.x)
 	player_container.transform *= t2 * rot * t1
+
+
+func _on_LeftController_joystick_movement(new_joystick_pos):
+	movement_joystick_pos = new_joystick_pos
+
+
+func _on_RightController_joystick_movement(new_joystick_pos):
+	offhand_joystick_pos = new_joystick_pos

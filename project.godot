@@ -14,7 +14,7 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Scenes/HoldableObject.gd"
 }, {
-"base": "RigidBody",
+"base": "HoldableObject",
 "class": "OppositeGun",
 "language": "GDScript",
 "path": "res://Scenes/OppositeGun.gd"
@@ -27,6 +27,7 @@ _global_script_class_icons={
 [application]
 
 config/name="Opposite Gun"
+run/main_scene="res://Main.tscn"
 config/icon="res://icon.png"
 
 [game_settings]
@@ -34,6 +35,11 @@ config/icon="res://icon.png"
 turn_rate=2.4
 player_speed=3.0
 player_accel=40.0
+dominant_hand="right"
+
+[gdnative]
+
+singletons=[ "res://addons/godot-openvr/godot_openvr.gdnlib" ]
 
 [physics]
 

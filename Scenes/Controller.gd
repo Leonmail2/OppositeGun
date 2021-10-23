@@ -52,56 +52,36 @@ func _ready():
 	else:
 		hand = "right"
 	
-	if hand == global_vars.dominant_hand:
+	if hand == ProjectSettings.get_setting("game_settings/dominant_hand"):
 		is_dominant_hand = true
 	else:
 		is_dominant_hand = false
-		$InteractionRaycastHover.monitorable = false
-		$InteractionRaycastHover.monitoring = false
 
 func trigger_pressed():
-	trigger_pressed = true
-	var interactor = $InteractionRaycast.get_collider()
-	if interactor != null and interactor.has_method("on_interact") and is_dominant_hand == true:
-		interactor.on_interact()
-	if object_in_hand and object.has_method("on_trigger_pull"):
-		object.on_trigger_pull()
-	
-	if current_hand_interactor != null:
-		if current_hand_interactor.type == "interactable_component":
-			current_hand_interactor.start_grip(self)
-			interactable_component_reference = current_hand_interactor
-			interactable_component_gripped = true
+	if object != null and object.has_method("on_trigger_pressed"):
+		object.on_trigger_pressed()
 	
 
 func trigger_unpressed():
-	if object_in_hand and object.has_method("on_trigger_end_pull"):
-		object.on_trigger_end_pull()
-	if interactable_component_gripped:
-		if interactable_component_reference != null:
-			interactable_component_reference.end_grip()
-		interactable_component_reference = null
-		interactable_component_gripped = false
+	if object != null and object.has_method("on_trigger_unpressed"):
+		object.on_trigger_unpressed()
 
 func grip_pressed():
 	if current_hand_interactor != null:
 		if current_hand_interactor.type == "objectgrip":
 			if not object_in_hand:
 				var object = current_hand_interactor.get_obj_ref()
-				object.picked_up(self,get_tree().get_network_unique_id())
+				object.picked_up(self)
+				$ItemHolderPos.remote_path = object.get_path()
 				#object_in_hand = true # this is done on the networked object end
 				if object.type == "gun":
-					global_vars.current_magazine_type = object.get_magazine_type()
-		
-		
-		if current_hand_interactor.type == "ammoholder":
-			current_hand_interactor.spawn_bullet(self)
+					$ItemHolderPos.transform.origin = $ItemHolderPosDefault.transform.origin + object.get_grip_offset()
 
 func grip_unpressed():
 	if object == null:
 		object_in_hand = false
-		object_in_hand = false
 	if object_in_hand:
+		$ItemHolderPos.remote_path = ""
 		object.dropped(controller_velocity)
 		object = null
 		object_in_hand = false
@@ -113,31 +93,7 @@ func _process(delta):
 		$Hand.hide()
 	else:
 		$Hand.show()
-	if object_in_hand and object != null:
-		if object.type == "gun" or object.type == "objectoffset":
-			var object_scale = object.scale
-			if not GlobalData.gunsmoothing:
-				var grip_pos_offset_transform = object.get_grip_offset()
-				var grip_pos_vector_offset = object.global_transform.origin - grip_pos_offset_transform.origin
-				object.global_transform = Transform($ItemHolderPos.global_transform.basis,$ItemHolderPos.global_transform.origin + grip_pos_vector_offset)
-				object.scale = object_scale
-			else:
-				#var refpoint = get_parent().global_transform.origin
-				#var grip_pos_offset = object.get_grip_offset()
-				
-				#var itemholderpos = $ItemHolderPos.global_transform
-				
-				#var target_pos = Transform(itemholderpos.basis,itemholderpos.origin-grip_pos_offset.origin)
-				#var current_pos = object.global_transform
-				
-				#var newpos = current_pos.interpolate_with(target_pos,global_vars.gunsmoothingamount)
-				pass
-	
-				#object.global_transform = newpos
-		elif object.type == "object":
-			var object_scale = object.scale
-			object.global_transform = $ItemHolderPos.global_transform
-			object.scale = object_scale
+		
 	#movement stuff
 	var joystic_pos = Vector2(get_joystick_axis(0),get_joystick_axis(1))
 	if joystic_pos.length() < 0.2:
@@ -162,14 +118,6 @@ func _process(delta):
 		if grip_val < 0.6 and grip_pressed == true and can_interact:
 			grip_pressed = false
 			grip_unpressed()
-	
-	var collider = $InteractionRaycast.get_collider()
-	var collision_distance = $InteractionRaycast.global_transform.origin.distance_to($InteractionRaycast.get_collision_point())
-	if object_in_hand == false:
-		if collider != null and collider.has_method("on_interact") and collision_distance < laser_distance and is_dominant_hand == true:
-			$Laser.show()
-		else:
-			$Laser.hide()
 
 func _physics_process(delta):
 	#calculate controller velocity
@@ -198,8 +146,7 @@ func _input(event):
 
 func _on_Controller_button_pressed(button):
 	if button == JOY_OCULUS_AX:
-		if object_in_hand and object.has_method("recive_button_input"):
-			object.recive_button_input(button)
+		pass
 
 
 func _on_InteractionArea_area_entered(area):
