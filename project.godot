@@ -10,6 +10,16 @@ config_version=4
 
 _global_script_classes=[ {
 "base": "RigidBody",
+"class": "BasePhysicsObject",
+"language": "GDScript",
+"path": "res://Objects/BasePhysicsObject.gd"
+}, {
+"base": "Spatial",
+"class": "Door",
+"language": "GDScript",
+"path": "res://Scenes/Door.gd"
+}, {
+"base": "RigidBody",
 "class": "HoldableObject",
 "language": "GDScript",
 "path": "res://Scenes/HoldableObject.gd"
@@ -20,6 +30,8 @@ _global_script_classes=[ {
 "path": "res://Scenes/OppositeGun.gd"
 } ]
 _global_script_class_icons={
+"BasePhysicsObject": "",
+"Door": "",
 "HoldableObject": "",
 "OppositeGun": ""
 }

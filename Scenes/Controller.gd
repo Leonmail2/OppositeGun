@@ -145,8 +145,9 @@ func _input(event):
 
 
 func _on_Controller_button_pressed(button):
-	if button == JOY_OCULUS_AX:
-		pass
+	if object_in_hand and object.has_method("_on_Controller_button_pressed"):
+		object._on_Controller_button_pressed("oculus",button)
+		
 
 
 func _on_InteractionArea_area_entered(area):

@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/326984__zetauri__zetauri-darkambienceloop-1496110c.wav-179ea6858e468c2fcbae43b2a3287d6d.sample"
+
+[deps]
+
+source_file="res://Assets/Sounds/326984__zetauri__zetauri-darkambienceloop-1496110c.wav"
+dest_files=[ "res://.import/326984__zetauri__zetauri-darkambienceloop-1496110c.wav-179ea6858e468c2fcbae43b2a3287d6d.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=true
+compress/mode=0

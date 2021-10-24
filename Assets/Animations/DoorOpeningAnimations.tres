@@ -1,0 +1,25 @@
+[gd_resource type="Animation" format=2]
+
+[resource]
+resource_name = "DoorOpening"
+tracks/0/type = "transform"
+tracks/0/path = NodePath("Door")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = true
+tracks/0/enabled = true
+tracks/0/keys = PoolRealArray( 0, 1, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 0.0666667, 1, 0, 0.0587661, 0, 0, 0, 0, 1, 1, 1, 1, 0.133333, 1, 0, 0.207024, 0, 0, 0, 0, 1, 1, 1, 1, 0.2, 1, 0, 0.434929, 0, 0, 0, 0, 1, 1, 1, 1, 0.733333, 1, 0, 2.86045, 0, 0, 0, 0, 1, 1, 1, 1, 0.8, 1, 0, 2.96575, 0, 0, 0, 0, 1, 1, 1, 1, 0.833333, 1, 0, 2.98305, 0, 0, 0, 0, 1, 1, 1, 1 )
+tracks/1/type = "method"
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0.9 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "_on_door_stopped_moving"
+} ]
+}

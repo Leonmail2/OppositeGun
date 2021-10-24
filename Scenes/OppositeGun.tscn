@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=2]
+[gd_scene load_steps=32 format=2]
 
 [ext_resource path="res://Scenes/OppositeGun.gd" type="Script" id=1]
 [ext_resource path="res://Scenes/HoldableObject.tscn" type="PackedScene" id=2]
@@ -11,6 +11,10 @@
 [ext_resource path="res://Scenes/OppositeGunEffects.gd" type="Script" id=9]
 [ext_resource path="res://Assets/OppositeGun/FrontEmmisive.material" type="Material" id=10]
 [ext_resource path="res://Scenes/GripInteractor.gd" type="Script" id=11]
+[ext_resource path="res://Assets/Sounds/529558__drmrsir__power-down.wav" type="AudioStream" id=12]
+[ext_resource path="res://Assets/Sounds/326984__zetauri__zetauri-darkambienceloop-1496110c.wav" type="AudioStream" id=13]
+[ext_resource path="res://Assets/Sounds/517379__newlocknew__ui-3-3-fhsandal-sinus-sytrus-arpegio-multiprocessing-rsmpl.wav" type="AudioStream" id=14]
+[ext_resource path="res://Assets/Sounds/566176__arrowheadproductions__flicking-a-switch.wav" type="AudioStream" id=15]
 
 [sub_resource type="ArrayMesh" id=1]
 resource_name = "OppositeGun"
@@ -150,13 +154,13 @@ surfaces/1 = {
 "vertex_count": 96
 }
 
-[sub_resource type="Curve" id=15]
+[sub_resource type="Curve" id=7]
 _data = [ Vector2( 0, 0 ), 0.0, 0.0, 0, 0, Vector2( 0.355263, 1 ), 0.0, 0.0, 0, 0, Vector2( 0.671053, 1 ), 0.0, 0.0, 0, 0, Vector2( 1, 0 ), 0.0, 0.0, 0, 0 ]
 
-[sub_resource type="CurveTexture" id=16]
-curve = SubResource( 15 )
+[sub_resource type="CurveTexture" id=8]
+curve = SubResource( 7 )
 
-[sub_resource type="ParticlesMaterial" id=17]
+[sub_resource type="ParticlesMaterial" id=9]
 emission_shape = 1
 emission_sphere_radius = 0.09
 gravity = Vector3( 0, 0, 0 )
@@ -167,9 +171,9 @@ tangential_accel = 0.71
 tangential_accel_random = 0.31
 scale = 0.89
 scale_random = 0.36
-scale_curve = SubResource( 16 )
+scale_curve = SubResource( 8 )
 
-[sub_resource type="SpatialMaterial" id=18]
+[sub_resource type="SpatialMaterial" id=10]
 albedo_color = Color( 0.462745, 0.462745, 0.462745, 1 )
 emission_enabled = true
 emission = Color( 1, 0.72549, 0, 1 )
@@ -177,19 +181,51 @@ emission_energy = 2.16
 emission_operator = 0
 emission_on_uv2 = false
 
-[sub_resource type="SphereMesh" id=7]
-material = SubResource( 18 )
+[sub_resource type="SphereMesh" id=11]
+material = SubResource( 10 )
 radius = 0.02
 height = 0.04
 
-[sub_resource type="CapsuleShape" id=12]
+[sub_resource type="Animation" id=12]
+resource_name = "Recoil"
+length = 0.5
+tracks/0/type = "transform"
+tracks/0/path = NodePath("OppositeGun")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = PoolRealArray( 0, 1, 0, -0.00463191, 0.0262255, 0, 0, 0, 1, 1, 1, 1, 0.05, 1, -1.74945e-09, 0.0172513, 0.0462369, 0.108789, 0, 9.51062e-09, 0.994065, 1, 1, 1, 0.38, 1, 0, -0.00463191, 0.0262255, 0, 0, 0, 1, 1, 1, 1 )
+tracks/1/type = "method"
+tracks/1/path = NodePath("..")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray(  ),
+"transitions": PoolRealArray(  ),
+"values": [  ]
+}
+
+[sub_resource type="Animation" id=13]
+resource_name = "Resting"
+tracks/0/type = "transform"
+tracks/0/path = NodePath("OppositeGun")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = PoolRealArray( 0, 1, 0, -0.00463191, 0.0262255, 0, 0, 0, 1, 1, 1, 1 )
+
+[sub_resource type="CapsuleShape" id=14]
 radius = 0.0588743
 height = 0.280751
 
-[sub_resource type="BoxShape" id=13]
+[sub_resource type="BoxShape" id=15]
 extents = Vector3( 0.0368913, 0.0706725, 0.0494424 )
 
-[sub_resource type="BoxShape" id=14]
+[sub_resource type="BoxShape" id=16]
 extents = Vector3( 0.0292895, 0.0680695, 0.0392947 )
 
 [node name="OppositeGun" instance=ExtResource( 2 )]
@@ -216,7 +252,7 @@ mesh = SubResource( 2 )
 material/0 = null
 
 [node name="GrabbyThings" type="MeshInstance" parent="OppositeGunEffects/OppositeGun" index="1"]
-transform = Transform( -0.827508, 0.560981, 0, -0.560981, -0.827508, 0, 0, 0, 1, 0, 0.0588985, 0.108486 )
+transform = Transform( 0.847812, 0.528943, 0, -0.528943, 0.847812, 0, 0, 0, 1, 0, 0.0588985, 0.108486 )
 mesh = SubResource( 3 )
 material/0 = null
 material/1 = null
@@ -227,12 +263,12 @@ material/0 = null
 material/1 = null
 
 [node name="PowerSpinny" type="MeshInstance" parent="OppositeGunEffects/OppositeGun" index="3"]
-transform = Transform( 0.370813, 0.932478, 0, -0.932478, 0.370813, 0, 0, 0, 1, 0, 0.0588985, 0.108486 )
+transform = Transform( 0.446324, -0.90626, 0, 0.90626, 0.446324, 0, 0, 0, 1, 0, 0.0588985, 0.108486 )
 mesh = SubResource( 5 )
 material/0 = null
 
 [node name="Spinner" type="MeshInstance" parent="OppositeGunEffects/OppositeGun" index="4"]
-transform = Transform( 0.370813, -0.932478, 0, 0.932478, 0.370813, 0, 0, 0, 1, 0, 0.0588985, 0.108486 )
+transform = Transform( 0.446324, 0.90626, 0, -0.90626, 0.446324, 0, 0, 0, 1, 0, 0.0588985, 0.108486 )
 mesh = SubResource( 6 )
 material/0 = null
 material/1 = null
@@ -244,27 +280,31 @@ lifetime = 0.55
 speed_scale = 0.78
 randomness = 0.23
 visibility_aabb = AABB( -0.0847201, -0.0935219, -0.0801311, 0.169441, 0.187044, 0.160262 )
-process_material = SubResource( 17 )
-draw_pass_1 = SubResource( 7 )
+process_material = SubResource( 9 )
+draw_pass_1 = SubResource( 11 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="OppositeGunEffects" index="1"]
+anims/Recoil = SubResource( 12 )
+anims/Resting = SubResource( 13 )
 
 [node name="CollisionShape" type="CollisionShape" parent="." index="2"]
 transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 3.75626e-09, 0.0259832, 0.0307357 )
-shape = SubResource( 12 )
+shape = SubResource( 14 )
 
 [node name="CollisionShape2" type="CollisionShape" parent="." index="3"]
 transform = Transform( -1, 1.49433e-08, -8.61362e-08, 0, 0.985283, 0.170932, 8.74228e-08, 0.170932, -0.985283, -3.75626e-09, -0.0667499, -0.0551976 )
-shape = SubResource( 13 )
+shape = SubResource( 15 )
 
 [node name="OppositeRayCast" type="RayCast" parent="." index="4"]
-transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0.0247087, 0.166012 )
+transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0.0247087, 0.240686 )
 enabled = true
 cast_to = Vector3( 0, 0, -1000 )
-collide_with_areas = true
+collision_mask = 3
 
 [node name="GravityRayCast" type="RayCast" parent="." index="5"]
 transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0.0247087, 0.166012 )
 enabled = true
-cast_to = Vector3( 0, 0, -10 )
+cast_to = Vector3( 0, 0, -20 )
 collision_mask = 2
 collide_with_areas = true
 
@@ -278,4 +318,30 @@ type = "objectgrip"
 
 [node name="CollisionShape" type="CollisionShape" parent="GripInteractor" index="0"]
 transform = Transform( 1, 0, 0, 0, 0.980088, 0.198564, 0, -0.198564, 0.980088, 0, -0.069293, 0.0296549 )
-shape = SubResource( 14 )
+shape = SubResource( 16 )
+
+[node name="Timer" type="Timer" parent="." index="8"]
+wait_time = 0.6
+one_shot = true
+
+[node name="GravityGunPowerDown" type="AudioStreamPlayer3D" parent="." index="9"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0190788, 0.130105 )
+stream = ExtResource( 12 )
+unit_db = 6.358
+
+[node name="GravityGunFiring" type="AudioStreamPlayer3D" parent="." index="10"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0190788, 0.199635 )
+stream = ExtResource( 13 )
+unit_db = 2.459
+autoplay = true
+attenuation_filter_cutoff_hz = 20500.0
+
+[node name="OppositeSoundEffect" type="AudioStreamPlayer3D" parent="." index="11"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0288247, -0.145739 )
+stream = ExtResource( 14 )
+
+[node name="SwitchModes" type="AudioStreamPlayer3D" parent="." index="12"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0288247, -0.087412 )
+stream = ExtResource( 15 )
+
+[connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]

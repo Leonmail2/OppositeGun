@@ -19,14 +19,19 @@ onready var player_container = $PlayerContainer
 
 onready var left_controller = $PlayerContainer/ARVROrigin/LeftController
 onready var right_controller = $PlayerContainer/ARVROrigin/RightController
+
+var footstep_countdown := 0.25
+var footstep_interval := 0.25
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	pass # Replace with function body.
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-#	pass
+func _process(delta):
+	footstep_countdown -= footstep_interval*delta
+	if footstep_countdown <= 0:
+		pass
 
 func _physics_process(delta):
 	$PlayerCollider.global_transform.origin.x = camera.global_transform.origin.x

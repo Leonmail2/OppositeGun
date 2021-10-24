@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/208525__fedsmoker__fan-loop.ogg-4959fe02e8fa893ba4ef8cd2b403dd64.oggstr"
+
+[deps]
+
+source_file="res://Assets/Sounds/208525__fedsmoker__fan-loop.ogg"
+dest_files=[ "res://.import/208525__fedsmoker__fan-loop.ogg-4959fe02e8fa893ba4ef8cd2b403dd64.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0
