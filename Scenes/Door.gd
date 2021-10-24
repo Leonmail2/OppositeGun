@@ -11,6 +11,8 @@ func _ready():
 	$AnimationPlayer.play("Closed")
 
 func _on_Button_pressed():
+	if is_open:
+		return
 	$AudioStreamPlayer3D.play()
 	is_open	= true
 	if is_moving:
@@ -22,6 +24,8 @@ func _on_Button_pressed():
 	is_moving = true
 
 func _on_Button_unpressed():
+	if !is_open:
+		return
 	$AudioStreamPlayer3D.play()
 	is_open = false
 	if is_moving:

@@ -73,13 +73,13 @@ data = PoolVector3Array( -0.7066, 0.888, -1.8008, -0.3939, 1.535, -2.5564, -0.39
 script = ExtResource( 2 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+autoplay = "Closed"
 anims/Closed = SubResource( 1 )
 anims/DoorClosing = SubResource( 2 )
 anims/DoorOpening = ExtResource( 3 )
 anims/Open = SubResource( 3 )
 
 [node name="Door" type="MeshInstance" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.98305, 0 )
 mesh = SubResource( 4 )
 material/0 = null
 
