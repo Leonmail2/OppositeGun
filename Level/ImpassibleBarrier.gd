@@ -5,7 +5,7 @@ extends StaticBody
 # var a = 2
 # var b = "text"
 
-export var is_opposite = false #default is impassible
+export var is_opposite = false
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	$ImpassibleBarrier/Impassable.visible = true
@@ -16,7 +16,7 @@ func opposite():
 	is_opposite = !is_opposite
 	$ImpassibleBarrier/Impassable.visible = !is_opposite
 	$ImpassibleBarrier/Passable.visible = is_opposite
-	$ImpassibleBarrier/StaticBody/CollisionShape.disabled = !is_opposite
+	$ImpassibleBarrier/StaticBody/CollisionShape.disabled = is_opposite
 	if !is_opposite: #impassible
 		$ImpassibleBarrier.mesh.surface_get_material(0).set_shader_param("albedo",Color(0.098039, 0.098039, 0.098039, 0.741176))
 	else:

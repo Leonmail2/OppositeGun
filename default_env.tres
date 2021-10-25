@@ -3,11 +3,24 @@
 [sub_resource type="ProceduralSky" id=1]
 
 [resource]
+background_mode = 1
 background_sky = SubResource( 1 )
+background_color = Color( 0.431373, 0.431373, 0.431373, 1 )
+background_energy = 0.82
 ambient_light_color = Color( 0.34902, 0.34902, 0.34902, 1 )
-ambient_light_energy = 3.45
-ambient_light_sky_contribution = 0.0
+ambient_light_energy = 1.18
+ambient_light_sky_contribution = 0.34
+fog_enabled = true
+fog_color = Color( 0.317647, 0.317647, 0.317647, 1 )
+fog_depth_begin = 72.0
+fog_depth_end = 102.7
+ssao_radius = 1.01
+ssao_intensity = 3.4
 glow_enabled = true
 glow_intensity = 3.54
 glow_strength = 1.02
 glow_bloom = 0.15
+adjustment_enabled = true
+adjustment_brightness = 0.83
+adjustment_contrast = 1.67
+adjustment_saturation = 1.44

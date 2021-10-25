@@ -8,6 +8,8 @@ radius = 0.290108
 height = 0.537937
 
 [node name="Player" type="KinematicBody"]
+collision_layer = 17
+collision_mask = 17
 script = ExtResource( 1 )
 
 [node name="PlayerContainer" type="Spatial" parent="."]
@@ -16,6 +18,7 @@ script = ExtResource( 1 )
 
 [node name="ARVRCamera" type="ARVRCamera" parent="PlayerContainer/ARVROrigin"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.79331, 0 )
+far = 1239.2
 
 [node name="LeftController" parent="PlayerContainer/ARVROrigin" instance=ExtResource( 2 )]
 transform = Transform( 1, 0, 0, 0, 0.849837, -0.527045, 0, 0.527045, 0.849837, -0.514847, 1.05273, 0 )

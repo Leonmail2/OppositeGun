@@ -51,7 +51,7 @@ dominant_hand="right"
 
 [gdnative]
 
-singletons=[ "res://addons/godot-openvr/godot_openvr.gdnlib" ]
+singletons=[ "res://addons/godot-oculus/godot_oculus.gdnlib", "res://addons/godot-openvr/godot_openvr.gdnlib" ]
 
 [physics]
 
@@ -61,4 +61,6 @@ common/enable_pause_aware_picking=true
 [rendering]
 
 quality/directional_shadow/size=8192
+quality/filters/msaa=3
+quality/filters/use_debanding=true
 environment/default_environment="res://default_env.tres"

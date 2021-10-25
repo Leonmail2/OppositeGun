@@ -54,7 +54,11 @@ func _physics_process(delta):
 	if !movement_enabled:
 		velocity.x = 0
 		velocity.z = 0
+		
+	if is_on_floor():
+		velocity += get_floor_velocity() * delta
 	move_and_slide(velocity,Vector3.UP)
+	
 	#rotate player according to blah blah blah
 	var t1 = Transform()
 	var t2 = Transform()

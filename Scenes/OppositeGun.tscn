@@ -229,10 +229,12 @@ extents = Vector3( 0.0368913, 0.0706725, 0.0494424 )
 extents = Vector3( 0.0292895, 0.0680695, 0.0392947 )
 
 [node name="OppositeGun" instance=ExtResource( 2 )]
-collision_layer = 2
+collision_layer = 10
 collision_mask = 2
+mass = 2.0
 script = ExtResource( 1 )
 type = "gun"
+gravity_gun_acceleration = 9
 
 [node name="HandOffset" parent="." index="0"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0523309, -0.0724438 )
@@ -252,7 +254,7 @@ mesh = SubResource( 2 )
 material/0 = null
 
 [node name="GrabbyThings" type="MeshInstance" parent="OppositeGunEffects/OppositeGun" index="1"]
-transform = Transform( -0.0288742, 0.998852, 0, -0.998852, -0.0288742, 0, 0, 0, 1, 0, 0.0588985, 0.108486 )
+transform = Transform( 0.755428, -0.654066, 0, 0.654066, 0.755428, 0, 0, 0, 1, 0, 0.0588985, 0.108486 )
 mesh = SubResource( 3 )
 material/0 = null
 material/1 = null
@@ -263,12 +265,12 @@ material/0 = null
 material/1 = null
 
 [node name="PowerSpinny" type="MeshInstance" parent="OppositeGunEffects/OppositeGun" index="3"]
-transform = Transform( -1.00878, 0.0559095, 0, -0.0559095, -1.00878, 0, 0, 0, 1, 0, 0.0588985, 0.108486 )
+transform = Transform( 0.142109, 1.00075, 0, -1.00075, 0.142109, 0, 0, 0, 1, 0, 0.0588985, 0.108486 )
 mesh = SubResource( 5 )
 material/0 = null
 
 [node name="Spinner" type="MeshInstance" parent="OppositeGunEffects/OppositeGun" index="4"]
-transform = Transform( -1.00878, -0.0559095, 0, 0.0559095, -1.00878, 0, 0, 0, 1, 0, 0.0588985, 0.108486 )
+transform = Transform( 0.142109, -1.00075, 0, 1.00075, 0.142109, 0, 0, 0, 1, 0, 0.0588985, 0.108486 )
 mesh = SubResource( 6 )
 material/0 = null
 material/1 = null
@@ -299,7 +301,7 @@ shape = SubResource( 15 )
 transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0.0247087, 0.240686 )
 enabled = true
 cast_to = Vector3( 0, 0, -1000 )
-collision_mask = 15
+collision_mask = 6
 
 [node name="GravityRayCast" type="RayCast" parent="." index="5"]
 transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0.0247087, 0.166012 )

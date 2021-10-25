@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://EntryScene/MainMenuCharacter.gd" type="Script" id=1]
+[ext_resource path="res://EntryScene/MainMenuController.tscn" type="PackedScene" id=2]
+
+[node name="MainMenuCharacter" type="KinematicBody"]
+script = ExtResource( 1 )
+
+[node name="ARVROrigin" type="ARVROrigin" parent="."]
+
+[node name="ARVRCamera" type="ARVRCamera" parent="ARVROrigin"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.805, 0 )
+
+[node name="Controller" parent="ARVROrigin" instance=ExtResource( 2 )]
+laser_distance = 427
+
+[node name="Controller2" parent="ARVROrigin" instance=ExtResource( 2 )]
+controller_id = 2
+laser_distance = 354

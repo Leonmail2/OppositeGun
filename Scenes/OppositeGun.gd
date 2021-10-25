@@ -75,8 +75,9 @@ func on_trigger_unpressed():
 		
 
 func picked_up(controller):
-	.picked_up(controller)
-	indicator.mesh.surface_get_material(1).set_shader_param("emission_energy",2.5)
+	if not in_hand:
+		.picked_up(controller)
+		indicator.mesh.surface_get_material(1).set_shader_param("emission_energy",2.5)
 	#print(indicator.material[1])
 	#indicator.material[1].set_shader_param("emission_energy",2.5)
 
